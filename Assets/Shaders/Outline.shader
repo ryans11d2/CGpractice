@@ -26,7 +26,7 @@ Shader "Custom/Outline"
         
             void vert (inout appdata_full v) {
                 //v.vertex.xyz += v.normal * _Outline;
-                v.vertex.xyz *= 1 + _Outline;// * sin(_Time);
+                v.vertex.xyz *= 1.04 + _Outline * (sin(_Time) * 0.1);
             }
 
             sampler2D _MainTex;
