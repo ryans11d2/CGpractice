@@ -4,7 +4,7 @@ Shader "Custom/Outline"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _OutlineColor ("Colour", Color) = (1,1,1,1)
-        _Outline ("Outline Width", Range (0.002, 0.1)) = 0.005
+        _Outline ("Outline Width", Range (0.01, 1)) = 1
     }
     SubShader
     {
@@ -25,7 +25,8 @@ Shader "Custom/Outline"
             float4 _OutlineColor;
         
             void vert (inout appdata_full v) {
-                v.vertex.xyz += v.normal * _Outline;
+                //v.vertex.xyz += v.normal * _Outline;
+                v.vertex.xyz *= 1 + _Outline;// * sin(_Time);
             }
 
             sampler2D _MainTex;
